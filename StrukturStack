@@ -1,0 +1,80 @@
+package TubesKel6;
+
+public class StrukturStack {
+	//Membuat Array Dari Class Tugas
+	private Tugas[] array;
+	//Kapasitas Array Dari Class Tugas
+    private int capacity;
+    //Mengembil Nilai Paling Atas Dalam Stack
+    private int TOP;
+    //Ini digunakan untuk menandakan bahwa stack kosong
+    public final int MIN = -1;
+    
+    //mengembalikan nilai boolean Bernama isEmpty yang berguna apa bila top = min (true), artinya stack penuh.
+    public boolean isEmpty() {
+        return (TOP == MIN);
+    }
+    //mengembalikan nilai boolean Bernama isFull yang berguna ama bila top = capacity - 1(true), artinya stack penuh.
+    public boolean isFull() {
+        return (TOP == capacity - 1);
+    }
+    //Membuat Function Bernama size yang berguna ama bila top + 1, yang mengembalikan ukuran stack saat ini 
+    public int size() {
+        return TOP + 1;
+    }
+    //sebuah metode bernama top yang mengembalikan elemen paling atas dari stack. Jika stack kosong, 
+    //metode ini akan mengembalikan null. Jika tidak, akan mengembalikan elemen pada indeks TOP
+    public Tugas top() {
+        if (isEmpty()) {
+            return null;
+        } else {
+            return array[TOP];
+        }
+    }
+    //Sebuah metode untuk melakukan push apabila stack masi kosong maka akan ditempatkan diposisi top
+    //dan apabila stack penuh maka akan mengembalikan nilia "Stack is full"
+    public void push(Tugas data) {
+        if (isFull()) {
+            System.out.println("Stack is full");
+        } else {
+            TOP++;
+            array[TOP] = data;
+        }
+    }
+    //sebuah metoda untuk melakukan pop apabila stack masi kosong maka akan mengembalikan nilai "Stack is empty"
+    //apabila isEmpty mengembalikan nilai true maka akan dicetak "Stack is empty"
+    //Jika isEmpty mengembalikan false, maka stack tidak kosong:
+    //maka poppedElement akan dijalankan, akan mengambil element paling atas dari array dan element paling atas dalam stack
+    //akan di hapus, return poppedElement akan mengembalikan nilai yang dihapus stack 
+    public Tugas pop() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return null;
+        } else {
+        	Tugas poppedElement = array[TOP];
+            TOP--;
+            return poppedElement;
+        }
+    }
+    //Konstruktor capacity untuk menentukan kapasitas maksimum stack
+    //dan menetapkan TOP ke MIN untuk menunjukkan bahwa stack kosong pada awalnya.
+    public StrukturStack(int capacity) {
+        super();
+        array = new Tugas[capacity];
+        this.capacity = capacity;
+        TOP = MIN;
+    }
+    //Mendefinisikan sebuah displayElements yang mencetak element yang berada dalam stack dati top hinnga paling bawah
+    //dan jika stack masi kosong maka akan mencetak "Stack is empty"
+    public void displayElements() {
+        System.out.println("Elements from TOP: ");
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+        } else {
+            for (int i = TOP; i >= 0; i--) {
+                System.out.println(array[i]);
+            }
+        }
+        System.out.println();
+    }
+}
